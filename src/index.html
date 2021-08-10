@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="./assets/js/public-js/polyfill.js"></script>
+   
+    <link rel="stylesheet" href="./assets/styles/styles.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+      integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+      integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+    />
+
+    <script
+      type="text/javascript"
+      src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"
+    ></script>
+
+    <script
+      type="text/javascript"
+      src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"
+    ></script>
+    <script src="https://unpkg.com/mustache@latest"></script>
+    <script src="./assets/js/services.js"></script>
+    <script src="./assets/js/main.js"></script>
+   
+
+    <title>News</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body >
+   
+    <!--countries section starts-->
+    <section id="carousel">
+      <div class="container">
+        <h4 class="header" id="x">Europe News</h4>
+        <div id="main-spinner" class="text-center">
+          <div class="spinner-border" role="status">
+            <span class="sr-only"></span>
+          </div>
+        </div>
+        <div id="target"></div>
+        <script id="template" type="x-tmpl-mustache">
+              <div class="glider-contain">
+                <div class="glider" id="glider">
+              {{#.}}
+
+
+              <div class="card" onclick = "getCountryWithId(id)" id="{{name}}">
+                <img class="card-img-top" src="{{flag}}" alt="Card image cap">
+                <div class="card-body text-center">
+                  <h5 class="card-text">{{name}}</h5>
+                  <p class="card-text">{{capital}}</p>
+
+                </div>
+
+              </div>
+              {{/.}}
+            </div>
+          </div>
+        </script>
+        <div role="tablist" class="dots"></div>
+      </div>
+    </section>
+    <!--countries section ends-->
+    <!--single country card section starts-->
+    <section id="country">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3"></div>
+          <div class="col-md-6">
+            <div id="card-target"></div>
+            <script id="country-card" type="x-tmpl-mustache">
+            <div class="card">
+              <div class="row">
+                <div class="col-md-6">
+                  <img
+                    class="card-img-top mt-4 ml-5"
+                    src="{{flag}}"
+                    alt="Card image cap"
+                  />
+                </div>
+                <div class="col-md-6">
+                  <div class="card-body">
+                    <p class="card-text text-light">Capital:{{capital}}</p>
+                    <p class="card-text text-light">Currency:{{#currencies}}
+                      {{name}}
+                      {{/currencies}}</p>
+                    <p class="card-text text-light">Language:{{#languages}}
+                      {{name}}
+                      {{/languages}}</p></p>
+                    <p class="card-text text-light">Population:{{population}}</p>
+                    <p class="card-text text-light">Subregion:{{subregion}}</p>
+                    <p class="card-text text-light">Timezone:{{timezones}}</p>
+                    <p class="card-text text-light">Neighbors:{{neighbors}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </script>
+          </div>
+          <div class="col-md-3"></div>
+        </div>
+      </div>
+    </section>
+    <!--single country card section ends-->
+
+    <!--news sections starts-->
+    <div id="news-spinner" class="text-center">
+      <div class="spinner-border" role="status">
+        <span class="sr-only"></span>
+      </div>
+    </div>
+    <section id="news">
+    <div class="container">
+        <div class="row">
+          <div class="col-md-2"></div>
+          <div class="col-md-8">
+            <div id="news-target"></div>
+            <script id="news-card" type="x-tmpl-mustache">
+              {{#.}}
+            <div class="card">
+              <div class="row">
+                <div class="col-md-6">
+                  <img
+                    class="card-img-top mt-4 ml-5"
+                    src="{{urlToImage}}"
+                    alt="Card image cap"
+                    onerror="this.onerror=null; this.src='./assets/images/notfound.png'"
+                  />
+                </div>
+                <div class="col-md-6">
+                  <div class="card-body">
+                    <h5 class="card-title text-light">{{title}}</h5>
+                    <p class="card-text text-light">{{description}}</p>
+                    <p class="card-text text-right"><small class="text-light text-muted">{{author}}o</small></p>
+                    <p class="card-text text-right"><small class="text-light text-muted">{{publishedAt}}</small></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {{/.}}
+          </script>
+          </div>
+          <div class="col-md-2"></div>
+        </div>
+      </div>
+    </section>
+    <!--news sections ends-->
+    <script src="./assets/js/glider-loader.js"></script>
+    <script src="./assets/js/vendors/Glider/glider.js"></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="./assets/js/vendors/Glider/glider.css"
+    />
+  </body>
+</html>
